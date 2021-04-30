@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Bad Thing
   - Human
+  - Bad Human
+  - Crystal
   layers:
   - Default
   - TransparentFX
