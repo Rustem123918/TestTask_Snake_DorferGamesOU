@@ -18,30 +18,17 @@ public class InputManager : Singleton<InputManager>
     }
     private void PCInput()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
             if (_snake.transform.position.x <= -_snake.rightBord)
                 return;
-            var currentX = _snake.transform.position.x;
-            var targetX = -1f;
-            var translation = targetX - currentX;
-            _snake.Move(new Vector3(translation, 0, 0));
+            _snake.Move(Vector3.left, false);
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
             if (_snake.transform.position.x >= _snake.rightBord)
                 return;
-            var currentX = _snake.transform.position.x;
-            var targetX = 1f;
-            var translation = targetX - currentX;
-            _snake.Move(new Vector3(translation, 0, 0));
-        }
-        if(Input.GetKeyDown(KeyCode.S))
-        {
-            var currentX = _snake.transform.position.x;
-            var targetX = 0f;
-            var translation = targetX - currentX;
-            _snake.Move(new Vector3(translation, 0, 0));
+            _snake.Move(Vector3.right, false);
         }
     }
     private void MobileInput()
@@ -49,29 +36,28 @@ public class InputManager : Singleton<InputManager>
         if (Input.touches.Length > 0)
         {
             var touch = Input.touches[0];
-            var ray = Camera.main.ScreenPointToRay(touch.position);
 
-            if (touch.phase == TouchPhase.Began)
+            if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
             {
+                var ray = Camera.main.ScreenPointToRay(touch.position);
                 RaycastHit raycastHit;
                 if(Physics.Raycast(ray, out raycastHit))
                 {
                     var currentX = _snake.transform.position.x;
                     var targetX = raycastHit.point.x;
-                    var translation = targetX - currentX;
-                    _snake.Move(new Vector3(translation, 0, 0));
+                    targetX = Mathf.Clamp(targetX, -_snake.rightBord, _snake.rightBord);
+
+                    var translation = new Vector3(targetX - currentX, 0, 0);
+                    if(Mathf.Abs(targetX - currentX) < 0.2f)
+                    {
+                        _snake.Move(translation, true);
+                    }
+                    else
+                    {
+                        _snake.Move(translation, false);
+                    }
                 }
             }
         }
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    var mousePos = Input.mousePosition;
-        //    Debug.Log(mousePos);
-        //    var ray = Camera.main.ScreenPointToRay(mousePos);
-        //    RaycastHit raycastHit;
-        //    if(Physics.Raycast(ray, out raycastHit))
-        //        Debug.Log(raycastHit.point);
-            
-        //}
     }
 }
