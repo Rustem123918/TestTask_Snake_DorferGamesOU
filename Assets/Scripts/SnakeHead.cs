@@ -12,7 +12,7 @@ public class SnakeHead : MonoBehaviour
             Destroy(other.gameObject);
             ScoreManager.Instance.IncreaseHuman();
         }
-        else if(other.CompareTag("Crystal"))
+        else if (other.CompareTag("Crystal"))
         {
             StartCoroutine(snakeBody.Eating());
             Destroy(other.gameObject);
@@ -21,6 +21,10 @@ public class SnakeHead : MonoBehaviour
         else if (other.CompareTag("Bad Thing") || other.CompareTag("Bad Human") || other.CompareTag("Finish"))
         {
             SceneManager.LoadScene("Main");
+        }
+        else if (other.CompareTag("Start"))
+        {
+            LevelManager.Instance.ChangeColor();
         }
     }
 }

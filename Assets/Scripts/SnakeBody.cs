@@ -9,6 +9,9 @@ public class SnakeBody : MonoBehaviour
     public int startBodyLength = 3;
     public float decreaseScale = 1.05f;
 
+    public float eatingSpeed = 0.1f;
+    public float eatingBodyPartSizeScale = 1.7f;
+
     private List<GameObject> _body;
     private List<Vector3> _bodyPartsOriginalScale;
     private void Start()
@@ -54,8 +57,8 @@ public class SnakeBody : MonoBehaviour
         {
             var bodyPart = _body[i];
             bodyPart.transform.localScale = _bodyPartsOriginalScale[i];
-            bodyPart.transform.localScale *= 2;
-            yield return new WaitForSeconds(0.1f);
+            bodyPart.transform.localScale *= eatingBodyPartSizeScale;
+            yield return new WaitForSeconds(eatingSpeed);
             bodyPart.transform.localScale = _bodyPartsOriginalScale[i];
         }
         IncreaseBodyLength();
