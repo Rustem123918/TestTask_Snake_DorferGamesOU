@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6517870145165317347}
   - component: {fileID: 8576300138110907311}
   - component: {fileID: 2933610672306162276}
+  - component: {fileID: 4880816477965707364}
+  - component: {fileID: -4138812497161402394}
   m_Layer: 0
   m_Name: Bad Human
   m_TagString: Bad Human
@@ -96,3 +98,33 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!111 &4880816477965707364
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4396265871545132212}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 6457bd346e33a274c8cf4d1be126de26, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 6457bd346e33a274c8cf4d1be126de26, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &-4138812497161402394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4396265871545132212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2cabd98f39cf7a4e955e107e79a9563, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  destroyTime: 1

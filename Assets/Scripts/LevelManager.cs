@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>
 {
-    public float timeDelay = 6f;
-
     public Material humanMaterial;
     public Material badHumanMaterial;
     public Material snakeMaterial;
@@ -20,19 +18,17 @@ public class LevelManager : Singleton<LevelManager>
 
         badHumanMaterial.color = badColors[0];
     }
-    public void ChangeColor()
-    {
-        StartCoroutine(ChangeColorRoutine());
-    }
-    private IEnumerator ChangeColorRoutine()
+    public void ChangeSnakeColor()
     {
         snakeMaterial.color = mainColors[_levelIndex];
-        yield return new WaitForSeconds(timeDelay);
-        if (_levelIndex >= mainColors.Length - 1)
-            yield break;
-        humanMaterial.color = mainColors[_levelIndex + 1];
-        badHumanMaterial.color = badColors[_levelIndex + 1];
-        
+
         _levelIndex++;
+    }
+    public void ChangeHumansColor()
+    {
+        if (_levelIndex >= mainColors.Length)
+            return;
+        humanMaterial.color = mainColors[_levelIndex];
+        badHumanMaterial.color = badColors[_levelIndex];
     }
 }

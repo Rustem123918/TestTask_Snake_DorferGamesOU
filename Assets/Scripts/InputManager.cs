@@ -11,6 +11,9 @@ public class InputManager : Singleton<InputManager>
     {
         if (_snake == null)
             return;
+        if (_snake.feverMode)
+            return;
+
         PCInput();
         MobileInput();
     }
