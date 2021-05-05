@@ -35,7 +35,7 @@ public class SnakeBody : MonoBehaviour
             position = _body[_body.Count - 1].transform.position + Vector3.back;
 
         var bodyPart = Instantiate(bodyPartPrefab, position, Quaternion.identity);
-        //bodyPart.transform.SetParent(this.transform);
+        
         var smoothFollow = bodyPart.AddComponent<SmoothFollow>();
         if(_body.Count == 0)
         {

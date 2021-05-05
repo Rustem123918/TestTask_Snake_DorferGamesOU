@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>
@@ -13,7 +12,7 @@ public class LevelManager : Singleton<LevelManager>
     public Color[] mainColors;
     public Color[] badColors;
 
-    private int levelIndex = 0;
+    private int _levelIndex = 0;
     private void Start()
     {
         snakeMaterial.color = mainColors[0];
@@ -21,23 +20,19 @@ public class LevelManager : Singleton<LevelManager>
 
         badHumanMaterial.color = badColors[0];
     }
-    //public void Restart()
-    //{
-    //    levelIndex = 0;
-    //}
     public void ChangeColor()
     {
         StartCoroutine(ChangeColorRoutine());
     }
     private IEnumerator ChangeColorRoutine()
     {
-        snakeMaterial.color = mainColors[levelIndex];
+        snakeMaterial.color = mainColors[_levelIndex];
         yield return new WaitForSeconds(timeDelay);
-        if (levelIndex >= mainColors.Length - 1)
+        if (_levelIndex >= mainColors.Length - 1)
             yield break;
-        humanMaterial.color = mainColors[levelIndex + 1];
-        badHumanMaterial.color = badColors[levelIndex + 1];
+        humanMaterial.color = mainColors[_levelIndex + 1];
+        badHumanMaterial.color = badColors[_levelIndex + 1];
         
-        levelIndex++;
+        _levelIndex++;
     }
 }

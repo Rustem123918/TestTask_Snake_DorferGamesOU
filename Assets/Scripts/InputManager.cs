@@ -1,20 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InputManager : Singleton<InputManager>
 {
-    public Snake _snake;
+    private Snake _snake;
+    private void Start()
+    {
+        _snake = GameManager.Instance.snake;
+    }
     private void Update()
     {
         if (_snake == null)
             return;
         PCInput();
         MobileInput();
-    }
-    public void Restart()
-    {
-        //_snake = GameManager.Instance.snake;
     }
     private void PCInput()
     {
