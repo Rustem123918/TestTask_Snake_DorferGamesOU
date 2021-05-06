@@ -6,7 +6,7 @@ public class SnakeHead : MonoBehaviour
     public Snake snake;
     private void OnTriggerEnter(Collider other)
     {
-        if(snake.feverMode)
+        if(snake.feverMode || GameManager.Instance.invincible)
         {
             if (other.CompareTag("Bad Thing") || other.CompareTag("Bad Human"))
             {

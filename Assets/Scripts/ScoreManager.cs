@@ -35,11 +35,14 @@ public class ScoreManager : Singleton<ScoreManager>
             anim.Play();
         }
 
-        if (_crystalScore >= 3 && !_snake.feverMode)
+        if(GameManager.Instance.feverModeAvailable)
         {
-            StartCoroutine(_snake.EnableFeverMode());
-            _crystalScore = 0;
-            crystalText.text = "C: " + _crystalScore;
+            if (_crystalScore >= 3 && !_snake.feverMode)
+            {
+                StartCoroutine(_snake.EnableFeverMode());
+                _crystalScore = 0;
+                crystalText.text = "C: " + _crystalScore;
+            }
         }
     }
 }

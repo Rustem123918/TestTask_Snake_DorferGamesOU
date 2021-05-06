@@ -49,14 +49,7 @@ public class InputManager : Singleton<InputManager>
                     targetX = Mathf.Clamp(targetX, -_snake.rightBord, _snake.rightBord);
 
                     var translation = new Vector3(targetX - currentX, 0, 0);
-                    if(Mathf.Abs(targetX - currentX) < 0.2f)
-                    {
-                        _snake.Move(translation, true);
-                    }
-                    else
-                    {
-                        _snake.Move(translation, false);
-                    }
+                    _snake.Move(translation, false);
                 }
             }
         }
